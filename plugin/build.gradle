@@ -21,6 +21,7 @@ plugins {
 // Not Published to Gradle Plugin Portal
 apply plugin: "org.grails.grails-web"
 apply plugin: "org.grails.grails-gsp"
+apply plugin: "org.grails.grails-plugin"
 
 group = "com.example"
 
@@ -30,9 +31,7 @@ repositories {
 }
 
 dependencies {
-    implementation project(':plugin')
-
-    profile "org.grails.profiles:web"
+    profile "org.grails.profiles:web-plugin"
     developmentOnly "org.webjars.npm:bootstrap"
     developmentOnly "org.webjars.npm:bootstrap-icons"
     developmentOnly "org.webjars.npm:jquery"
@@ -60,7 +59,6 @@ dependencies {
     runtimeOnly "com.h2database:h2"
     runtimeOnly "org.apache.tomcat:tomcat-jdbc"
     runtimeOnly "org.fusesource.jansi:jansi"
-    integrationTestImplementation testFixtures("org.grails.plugins:geb")
     testImplementation "org.grails:grails-gorm-testing-support"
     testImplementation "org.grails:grails-web-testing-support"
     testImplementation "org.spockframework:spock-core"
@@ -81,6 +79,7 @@ tasks.withType(Test) {
     useJUnitPlatform()
 }
 assets {
+    packagePlugin = true
     excludes = [
             'webjars/jquery/**',
             'webjars/bootstrap/**',
